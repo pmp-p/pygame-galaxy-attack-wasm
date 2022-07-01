@@ -1,6 +1,6 @@
 import pygame
 import os
-import ctypes
+
 
 from utils.resource_path import resource_path
 
@@ -16,6 +16,7 @@ class Config:
         self.backgroundImage = pygame.image.load(resource_path(
             os.path.join('assets', 'graphics', 'background-black-wide.png')))
         try:
+            import ctypes
             windows_user = ctypes.windll.user32
             self.monitor_size = (windows_user.GetSystemMetrics(0),
                                  windows_user.GetSystemMetrics(1))
