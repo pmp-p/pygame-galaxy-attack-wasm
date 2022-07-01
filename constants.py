@@ -19,8 +19,8 @@ class Path:
     SOUND_PATH = os.path.join('assets', 'sounds')
 
     # load music
-    GAME_MUSIC_PATH = resource_path(os.path.join(SOUND_PATH, 'ingame.wav'))
-    MENU_MUSIC_PATH = resource_path(os.path.join(SOUND_PATH, 'menu.wav'))
+    GAME_MUSIC_PATH = resource_path(os.path.join(SOUND_PATH, 'ingame.wav.ogg'))
+    MENU_MUSIC_PATH = resource_path(os.path.join(SOUND_PATH, 'menu.wav.ogg'))
 
 
 class Font:
@@ -121,10 +121,10 @@ class Image:
 
 
 class Sound:
-    PLAYER_LASER_SOUND = Assets.sound.load(Path.SOUND_PATH, 'ownlaser.wav')
-    ENEMY_LASER_SOUND = Assets.sound.load(Path.SOUND_PATH, 'enemylaser.wav')
-    EXPLODE_SOUND = Assets.sound.load(Path.SOUND_PATH, 'explode.wav')
-    LASER_HIT_SOUND = Assets.sound.load(Path.SOUND_PATH, 'laser_hit.wav')
+    PLAYER_LASER_SOUND = Assets.sound.load(Path.SOUND_PATH, 'ownlaser.wav.ogg')
+    ENEMY_LASER_SOUND = Assets.sound.load(Path.SOUND_PATH, 'enemylaser.wav.ogg')
+    EXPLODE_SOUND = Assets.sound.load(Path.SOUND_PATH, 'explode.wav.ogg')
+    LASER_HIT_SOUND = Assets.sound.load(Path.SOUND_PATH, 'laser_hit.wav.ogg')
 
 
 # adding sounds to the list

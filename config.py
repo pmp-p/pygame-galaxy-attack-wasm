@@ -15,10 +15,12 @@ class Config:
         # Load Background Image
         self.backgroundImage = pygame.image.load(resource_path(
             os.path.join('assets', 'graphics', 'background-black-wide.png')))
-
-        windows_user = ctypes.windll.user32
-        self.monitor_size = (windows_user.GetSystemMetrics(0),
-                             windows_user.GetSystemMetrics(1))
+        try:
+            windows_user = ctypes.windll.user32
+            self.monitor_size = (windows_user.GetSystemMetrics(0),
+                                 windows_user.GetSystemMetrics(1))
+        except:
+            self.monitor_size = (1024,600)
 
         # Set Background Dimensions
         self.BG = pygame.transform.scale(

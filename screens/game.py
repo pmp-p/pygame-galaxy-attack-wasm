@@ -1,3 +1,4 @@
+import asyncio
 import pygame
 import sys
 import time
@@ -20,7 +21,7 @@ pause = False
 play_btn = IconButton(Image.PLAY_IMAGE)
 
 
-def game(isMouse=False):
+async def game(isMouse=False):
     global pause
     lives = 5
     laser_vel = 10
@@ -119,7 +120,7 @@ def game(isMouse=False):
 
         audio_cfg.display_volume()
         pygame.display.flip()
-        config.clock.tick(config.FPS)
+        #config.clock.tick(config.FPS)
 
     while player.run:
         redraw_window()
@@ -170,7 +171,7 @@ def game(isMouse=False):
                         pygame.mouse.set_visible(True)
                         pause = True
                         redraw_window()
-                        paused(player, isMouse)
+                        await paused(player, isMouse)
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_m:
@@ -187,7 +188,7 @@ def game(isMouse=False):
                     pygame.mouse.set_visible(True)
                     pause = True
                     redraw_window()
-                    paused(player, isMouse)
+                    await paused(player, isMouse)
 
         player.move()
 
@@ -227,9 +228,10 @@ def game(isMouse=False):
                 enemies.remove(enemy)
 
         player.move_lasers(-laser_vel, enemies)
+        await asyncio.sleep(0)
 
 
-def paused(player, isMouse):
+async def paused(player, isMouse):
     main_font = pygame.font.Font(Font.edit_undo_font, 60)
 
     pause_label = Assets.text.render('Paused', main_font, Colors.CYAN)
@@ -283,7 +285,7 @@ def paused(player, isMouse):
 
         pygame.display.flip()
         config.clock.tick(15)
-
+        await asyncio.sleep(0)
 
 def unpause():
     global pause

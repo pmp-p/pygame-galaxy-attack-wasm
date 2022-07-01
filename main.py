@@ -1,4 +1,5 @@
 import sys
+import asyncio
 import pygame
 import argparse
 
@@ -29,7 +30,7 @@ pygame.display.set_caption(config.TITLE)
 pygame.display.set_icon(Image.PLAYER_SPACE_SHIP)
 
 
-def main():
+async def main():
     title_font = pygame.font.Font(Font.edit_undo_font, 82)
 
     audio_cfg.play_music(Path.MENU_MUSIC_PATH)
@@ -109,9 +110,9 @@ def main():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
                     if mouse_btn.isOver():
-                        game(True)
+                        await game(True)
                     if keyboard_btn.isOver():
-                        game()
+                        await game()
                     if control_btn.isOver():
                         controls()
                     if trophy_btn.isOver():
@@ -170,8 +171,11 @@ def main():
         if keys[pygame.K_s]:
             score_board()
 
+        await asyncio.sleep(0)
     pygame.quit()
     sys.exit(0)
 
 
-main()
+if __name__ == '__main__':
+    asyncio.run(main())
+
